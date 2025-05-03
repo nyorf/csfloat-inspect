@@ -3,6 +3,8 @@ module.exports = {
     'http': {
         'port': 80
     },
+    // Specify bearer token for the API
+    'api_token': 'TOKEN',
     // Whether to trust a forwarding proxy's IP (trust X-Forwarded-For)
     'trust_proxy': false,
     // List of usernames and passwords for the Steam accounts
