@@ -82,6 +82,16 @@ CONFIG.allowed_regex_origins = CONFIG.allowed_regex_origins || [];
 CONFIG.allowed_origins = CONFIG.allowed_origins || [];
 const allowedRegexOrigins = CONFIG.allowed_regex_origins.map((origin) => new RegExp(origin));
 
+const REQUIRED_TOKEN = CONFIG.api_token;
+
+app.use((req, res, next) => {
+    const token = req.headers['authorization'];
+    if (!token || token !== `Bearer ${REQUIRED_TOKEN}`) {
+        winston.warn('Unauthorized access attempt');
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+    next();
+});
 
 async function handleJob(job) {
     // See which items have already been cached
