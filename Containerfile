@@ -1,4 +1,4 @@
-FROM node:18.15
+FROM node:23.11
 
 # Create app directory
 WORKDIR /usr/src/csgofloat
@@ -13,8 +13,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 80
-EXPOSE 443
 VOLUME /config
 
 CMD [ "/bin/bash", "docker_start.sh" ]
